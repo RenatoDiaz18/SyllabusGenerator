@@ -169,7 +169,9 @@ public class Data {
         String pathCarpetaEscuela = pathCarpetaFacultad + "/" + escuela;;
         
         programa = limpiarTexto(programa);
-        return pathCarpetaEscuela + "/" + programa + ".txt";
+        String pathPrograma = pathCarpetaEscuela + "/" + programa + ".txt";
+        
+        return pathPrograma;
         
     }
     

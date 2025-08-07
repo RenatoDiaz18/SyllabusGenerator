@@ -4,7 +4,6 @@
  */
 package prototipo;
 
-import Clases.Facultades;
 import Data.PlanesEstudioRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -299,9 +298,9 @@ public class JDFacultades extends javax.swing.JDialog {
         this.cantidadEncontrados = 0;
         
         if(criterio.isBlank() || criterio.isEmpty()){
-            encontrados = (List<String>) PlanesEstudioRepository.obtenerFacultades();
+            encontrados.addAll(facultades);
         }else{
-            for (String nombreFacultad : (List<String>) PlanesEstudioRepository.obtenerFacultades()) {
+            for (String nombreFacultad : facultades) {
                 if (criterio.length() > 0) {
                     if (criterio.length() <= nombreFacultad.length()) {
                         if (criterio.equalsIgnoreCase(nombreFacultad.substring(0, criterio.length()))) {
