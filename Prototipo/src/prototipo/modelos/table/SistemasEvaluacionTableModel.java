@@ -1,5 +1,6 @@
 package prototipo.modelos.table;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -8,8 +9,8 @@ public class SistemasEvaluacionTableModel extends AbstractTableModel {
     private final List<FilaSistemaEvaluacion> filas;
     private final String[] columnas = {"Evidencias", "Siglas", "Peso", "Cronograma"};
 
-    public SistemasEvaluacionTableModel(List<FilaSistemaEvaluacion> filas) {
-        this.filas = filas;
+    public SistemasEvaluacionTableModel() {
+        this.filas = new ArrayList<>();
     }
 
     @Override

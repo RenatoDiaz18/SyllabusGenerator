@@ -25,7 +25,9 @@ public class JPSistemaCalificacion extends javax.swing.JPanel {
         this.silabo = silabo;
         this.padre = padre;
 
+        modeloCali = new SistemasEvaluacionTableModel();
         initComponents();
+        tblSistemaCalificacion.setModel(modeloCali);
         setControlesActivos(false);
     }
 

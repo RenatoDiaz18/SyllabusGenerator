@@ -168,7 +168,7 @@ public class JPGestionUnidades extends javax.swing.JPanel {
             String nombreUnidad = modelo.getNombreUnidad(pos);
             String desempeño = modelo.getDesempeño(pos).getDescripcion();
 
-            JDFormularioUnidad frm = new JDFormularioUnidad(null, true);
+            JDFormularioUnidad frm = new JDFormularioUnidad(null, true,silabo);
             frm.setDatosUnidad(numeroUnidad, nombreUnidad, desempeño);
             frm.setVisible(true);
 
@@ -195,7 +195,7 @@ public class JPGestionUnidades extends javax.swing.JPanel {
                 return;
             }
 
-            JDFormularioUnidad frm = new JDFormularioUnidad(null, true);
+            JDFormularioUnidad frm = new JDFormularioUnidad(null, true,silabo);
             frm.setUnidadCompleta(unidad);
             frm.setVisible(true);
 

@@ -1,5 +1,6 @@
 package Paneles;
 
+import Clases.CrearSilabo;
 import Clases.Silabo;
 import static Data.Data.docenteLogged;
 import prototipo.JFPrincipal;
@@ -190,7 +191,8 @@ public class JPBienvenida extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGestionarActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        // TODO add your handling code here:
+       CrearSilabo Cr = new CrearSilabo(silabo);
+       Cr.Crear();
     }//GEN-LAST:event_btnExportarActionPerformed
 
 

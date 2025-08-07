@@ -23,8 +23,15 @@ public class JPSistemaEvaluacion extends javax.swing.JPanel {
         this.desempeños = desempeño;
         this.silabo = silabo;
         this.padre = padre;
+        
+        
         modeloEvalu = new EvaluacionTableModel(this.desempeños);
+        
+        
         initComponents();
+        
+        
+        
 //        this.modeloEvalu.setDatos(convertirADatosEvaluacion(desempeños));
     }
 
