@@ -4,7 +4,7 @@
  */
 package Clases;
 
-import java.util.List;
+import java.util.*;
 import prototipo.modelos.table.FilaSistemaEvaluacion;
 
 /**
@@ -22,6 +22,7 @@ public class Silabo {
     private int ciclo;
     private String codigoCurso;
     private int creditos;
+    private List<String> prerrequisitos;
     private int horasSemanales;
     private int horasTeoricas;
     private int horasPracticas;
@@ -41,7 +42,7 @@ public class Silabo {
     public Silabo() {
     }
 
-    public Silabo(String curso, String docente, String facultad, String escuelaProfesional, String modalidad, int ciclo, String codigoCurso, int creditos, int horasSemanales, int horasTeoricas, int horasPracticas, String duracion, String inicioDuracion, String finalDuracion, String sumilla, String competenciasProf, String capacidadCurso, List<Desempeño> desempeños, List<Unidad> unidades) {
+    public Silabo(String curso, String docente, String facultad, String escuelaProfesional, String modalidad, int ciclo, String codigoCurso, int creditos, ArrayList<String> prerrequisitos, int horasSemanales, int horasTeoricas, int horasPracticas, String duracion, String inicioDuracion, String finalDuracion, String sumilla, String competenciasProf, String capacidadCurso, List<Desempeño> desempeños, List<Unidad> unidades) {
         this.curso = curso;
         this.docente = docente;
         this.facultad = facultad;
@@ -50,6 +51,10 @@ public class Silabo {
         this.ciclo = ciclo;
         this.codigoCurso = codigoCurso;
         this.creditos = creditos;
+        
+        this.prerrequisitos = new ArrayList<>();
+        this.prerrequisitos.addAll(prerrequisitos);
+        
         this.horasSemanales = horasSemanales;
         this.horasTeoricas = horasTeoricas;
         this.horasPracticas = horasPracticas;
@@ -83,6 +88,14 @@ public class Silabo {
         return programaEstudios;
     }
 
+    public List<String> getPrerrequisitos() {
+        return prerrequisitos;
+    }
+
+    public void setPrerrequisitos(List<String> prerrequisitos) {
+        this.prerrequisitos = prerrequisitos;
+    }
+    
     public void setProgramaEstudios(String programaEstudios) {
         this.programaEstudios = programaEstudios;
     }

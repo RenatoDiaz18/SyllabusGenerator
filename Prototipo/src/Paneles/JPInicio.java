@@ -509,6 +509,12 @@ public class JPInicio extends javax.swing.JPanel {
     private void btnSiguenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguenteActionPerformed
 
         if (validarDatos() == true) {
+            for(Curso curso : cursosActuales){
+                    if(curso.getCodigo().equals(this.txtCodigoCurso.getText())){
+                        this.silabo.setPrerrequisitos(curso.getPrerrequisitos());
+                    }
+            }
+            
             this.silabo.setFacultad(txtProgramaEst.getText());
             this.silabo.setEscuelaProfesional(txtEscuelaProf.getText());
             this.silabo.setCiclo((int) spCiclo.getValue());
@@ -519,6 +525,7 @@ public class JPInicio extends javax.swing.JPanel {
             this.silabo.setHorasSemanales(Integer.parseInt(txtHorasSemanles.getText()));
             this.silabo.setHorasTeoricas( (int) this.spHorasTeoricas.getValue());
             this.silabo.setHorasPracticas( (int) this.spHorasPracticas.getValue());
+            
             this.silabo.setDuracion(txtDuracion.getText());
             this.silabo.setInicioDuracion(txtInicioDuracion.getText());
             this.silabo.setFinalDuracion(txtFinalDuracion.getText());
