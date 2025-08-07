@@ -17,6 +17,7 @@ public class Silabo {
     private String docente;
     private String facultad;
     private String escuelaProfesional;
+    private String programaEstudios;
     private String modalidad;
     private int ciclo;
     private String codigoCurso;
@@ -76,6 +77,14 @@ public class Silabo {
 
     public String getEscuelaProfesional() {
         return escuelaProfesional;
+    }
+
+    public String getProgramaEstudios() {
+        return programaEstudios;
+    }
+
+    public void setProgramaEstudios(String programaEstudios) {
+        this.programaEstudios = programaEstudios;
     }
 
     public String getCompetenciasProf() {

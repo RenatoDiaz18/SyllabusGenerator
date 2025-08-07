@@ -1,7 +1,6 @@
 package Paneles;
 
 import Clases.Curso;
-import Clases.ListaEscuela;
 import Clases.Silabo;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class JPInicio extends javax.swing.JPanel {
     public JPInicio(JFGenerador padre, Silabo silabo) {
 
         initComponents();
-        this.cargarCursos(silabo.getEscuelaProfesional(), silabo.getCiclo());
+        this.cargarCursos((int) this.spCiclo.getValue());
         this.padre = padre;
         this.silabo = silabo;
 
@@ -55,8 +54,6 @@ public class JPInicio extends javax.swing.JPanel {
         lblHoraTeoricas = new javax.swing.JLabel();
         lblHorasPracticas = new javax.swing.JLabel();
         txtDuracion = new javax.swing.JTextField();
-        txtHorasTeoricas = new javax.swing.JTextField();
-        txtHorasPracticas = new javax.swing.JTextField();
         lblInicioDuracion = new javax.swing.JLabel();
         txtFinalDuracion = new javax.swing.JTextField();
         lblFinalDuracion = new javax.swing.JLabel();
@@ -86,6 +83,8 @@ public class JPInicio extends javax.swing.JPanel {
         lblCiclo = new javax.swing.JLabel();
         txtInicioDuracion = new javax.swing.JTextField();
         spCiclo = new javax.swing.JSpinner();
+        spHorasTeoricas = new javax.swing.JSpinner();
+        spHorasPracticas = new javax.swing.JSpinner();
 
         panInformacionGeneral.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -147,14 +146,6 @@ public class JPInicio extends javax.swing.JPanel {
         txtDuracion.setFont(new java.awt.Font("SF UI  Text Med", 0, 12)); // NOI18N
         txtDuracion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDuracion.setText("16 semanas");
-
-        txtHorasTeoricas.setEditable(false);
-        txtHorasTeoricas.setBackground(new java.awt.Color(204, 204, 204));
-        txtHorasTeoricas.setFont(new java.awt.Font("SF UI  Text Med", 0, 14)); // NOI18N
-
-        txtHorasPracticas.setEditable(false);
-        txtHorasPracticas.setBackground(new java.awt.Color(204, 204, 204));
-        txtHorasPracticas.setFont(new java.awt.Font("SF UI  Text Med", 0, 14)); // NOI18N
 
         lblInicioDuracion.setFont(new java.awt.Font("SF UI  Text Med", 0, 12)); // NOI18N
         lblInicioDuracion.setText("•  Inicio:");
@@ -233,12 +224,13 @@ public class JPInicio extends javax.swing.JPanel {
             }
         });
 
+        txtPrerequisito.setEditable(false);
         txtPrerequisito.setBackground(new java.awt.Color(204, 204, 204));
         txtPrerequisito.setFont(new java.awt.Font("SF UI  Text Med", 0, 14)); // NOI18N
         txtPrerequisito.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         lblPrerequisito.setFont(new java.awt.Font("SF UI  Text Med", 0, 12)); // NOI18N
-        lblPrerequisito.setText("Prerequisito");
+        lblPrerequisito.setText("Prerequisitos:");
 
         txtCompetenciasProfesionales.setBackground(new java.awt.Color(204, 204, 204));
         txtCompetenciasProfesionales.setColumns(20);
@@ -277,6 +269,20 @@ public class JPInicio extends javax.swing.JPanel {
             }
         });
 
+        spHorasTeoricas.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        spHorasTeoricas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spHorasTeoricasStateChanged(evt);
+            }
+        });
+
+        spHorasPracticas.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        spHorasPracticas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spHorasPracticasStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout panInformacionGeneralLayout = new javax.swing.GroupLayout(panInformacionGeneral);
         panInformacionGeneral.setLayout(panInformacionGeneralLayout);
         panInformacionGeneralLayout.setHorizontalGroup(
@@ -300,15 +306,6 @@ public class JPInicio extends javax.swing.JPanel {
                                             .addComponent(lblProgramaEstudio))
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(36, 36, 36))
-                            .addGroup(panInformacionGeneralLayout.createSequentialGroup()
-                                .addComponent(lblHoraTeoricas)
-                                .addGap(8, 8, 8)
-                                .addComponent(txtHorasTeoricas, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblHorasPracticas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtHorasPracticas)
-                                .addGap(37, 37, 37))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panInformacionGeneralLayout.createSequentialGroup()
                                 .addGroup(panInformacionGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(panInformacionGeneralLayout.createSequentialGroup()
@@ -353,6 +350,14 @@ public class JPInicio extends javax.swing.JPanel {
                                 .addGap(30, 30, 30))
                             .addGroup(panInformacionGeneralLayout.createSequentialGroup()
                                 .addGroup(panInformacionGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panInformacionGeneralLayout.createSequentialGroup()
+                                        .addComponent(lblHoraTeoricas)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(spHorasTeoricas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblHorasPracticas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(spHorasPracticas, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panInformacionGeneralLayout.createSequentialGroup()
                                         .addComponent(lblCiclo)
                                         .addGap(18, 18, 18)
@@ -464,10 +469,10 @@ public class JPInicio extends javax.swing.JPanel {
                             .addComponent(txtHorasSemanles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panInformacionGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtHorasTeoricas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblHoraTeoricas)
-                            .addComponent(txtHorasPracticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblHorasPracticas))
+                            .addComponent(lblHorasPracticas)
+                            .addComponent(spHorasTeoricas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spHorasPracticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panInformacionGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDuracion)
@@ -512,8 +517,8 @@ public class JPInicio extends javax.swing.JPanel {
             this.silabo.setModalidad(cboModalidad.getSelectedItem().toString());
             this.silabo.setCreditos((int) spCreditos.getValue());
             this.silabo.setHorasSemanales(Integer.parseInt(txtHorasSemanles.getText()));
-            this.silabo.setHorasTeoricas(Integer.parseInt(txtHorasTeoricas.getText()));
-            this.silabo.setHorasPracticas(Integer.parseInt(txtHorasPracticas.getText()));
+            this.silabo.setHorasTeoricas( (int) this.spHorasTeoricas.getValue());
+            this.silabo.setHorasPracticas( (int) this.spHorasPracticas.getValue());
             this.silabo.setDuracion(txtDuracion.getText());
             this.silabo.setInicioDuracion(txtInicioDuracion.getText());
             this.silabo.setFinalDuracion(txtFinalDuracion.getText());
@@ -543,30 +548,18 @@ public class JPInicio extends javax.swing.JPanel {
             for (Curso curso : cursosActuales) {
                 if (curso.getNombre().equals(nombreCursoSeleccionado)) {
                     txtCodigoCurso.setText(curso.getCodigo());
-                    txtHorasPracticas.setText(curso.gethPracticas());
-                    txtHorasTeoricas.setText(curso.gethTeoricas());
-                    txtHorasSemanles.setText("" + (Integer.parseInt(curso.gethPracticas()) + Integer.parseInt(curso.gethTeoricas())));
+                    spHorasPracticas.setValue(curso.gethPracticas());
+                    spHorasTeoricas.setValue(curso.gethTeoricas());
+                    txtHorasSemanles.setText(String.valueOf((int) spHorasPracticas.getValue() + (int) spHorasTeoricas.getValue()));
                     spCreditos.setValue(curso.getCreditos());
-                    txtPrerequisito.setText(curso.getPrerequisito());
+                    txtPrerequisito.setText(String.join(", ", curso.getPrerrequisitos()));
                     txtSumilla.setText(curso.getSumilla());
                     txtSumilla.setLineWrap(true);
                     txtSumilla.setWrapStyleWord(true);
-                    txtCompetenciasProfesionales.setText(curso.getCompetencia());
                     txtCompetenciasProfesionales.setLineWrap(true);
                     txtCompetenciasProfesionales.setWrapStyleWord(true);
-                    txtCapacidadCurso.setText(curso.getCapacidad());
                     txtCapacidadCurso.setLineWrap(true);
                     txtCapacidadCurso.setWrapStyleWord(true);
-
-                    // Cargar desempeños en la tabla
-                    DesempeñosTableModel modeloDesempeños = (DesempeñosTableModel) tblDesempeño.getModel();
-                    modeloDesempeños.setDesempeños(curso.getDesempeño());
-
-                    spDesempeños.setValue(curso.getDesempeño().size()); //Poner el spDesempeños segun el numero de desempeños
-                    tblDesempeño.getColumnModel().getColumn(0).setPreferredWidth(100);
-                    tblDesempeño.getColumnModel().getColumn(0).setMaxWidth(80);
-                    tblDesempeño.getColumnModel().getColumn(0).setMinWidth(70);
-
                     break;
                 }
             }
@@ -582,9 +575,16 @@ public class JPInicio extends javax.swing.JPanel {
     }//GEN-LAST:event_txtInicioDuracionKeyReleased
 
     private void spCicloStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spCicloStateChanged
-        int cicloSeleccionado = (int) spCiclo.getValue();
-        this.cargarCursos(silabo.getEscuelaProfesional(), cicloSeleccionado);
+        this.cargarCursos((int) this.spCiclo.getValue());
     }//GEN-LAST:event_spCicloStateChanged
+
+    private void spHorasTeoricasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spHorasTeoricasStateChanged
+        txtHorasSemanles.setText(String.valueOf((int) spHorasPracticas.getValue() + (int) spHorasTeoricas.getValue()));
+    }//GEN-LAST:event_spHorasTeoricasStateChanged
+
+    private void spHorasPracticasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spHorasPracticasStateChanged
+        txtHorasSemanles.setText(String.valueOf((int) spHorasPracticas.getValue() + (int) spHorasTeoricas.getValue()));
+    }//GEN-LAST:event_spHorasPracticasStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -621,6 +621,8 @@ public class JPInicio extends javax.swing.JPanel {
     private javax.swing.JSpinner spCiclo;
     private javax.swing.JSpinner spCreditos;
     private javax.swing.JSpinner spDesempeños;
+    private javax.swing.JSpinner spHorasPracticas;
+    private javax.swing.JSpinner spHorasTeoricas;
     private javax.swing.JTable tblDesempeño;
     private javax.swing.JTextArea txtCapacidadCurso;
     private javax.swing.JTextField txtCodigoCurso;
@@ -629,9 +631,7 @@ public class JPInicio extends javax.swing.JPanel {
     private javax.swing.JTextField txtDuracion;
     private javax.swing.JTextField txtEscuelaProf;
     private javax.swing.JTextField txtFinalDuracion;
-    private javax.swing.JTextField txtHorasPracticas;
     private javax.swing.JTextField txtHorasSemanles;
-    private javax.swing.JTextField txtHorasTeoricas;
     private javax.swing.JTextField txtInicioDuracion;
     private javax.swing.JTextField txtPrerequisito;
     private javax.swing.JTextField txtProgramaEst;
@@ -693,8 +693,8 @@ public class JPInicio extends javax.swing.JPanel {
         return true;
     }
 
-    private void cargarCursos(String escuela, int ciclo) {
-        cursosActuales = ListaEscuela.obtenerCursos(escuela, ciclo);
+    private void cargarCursos(Integer ciclo) {
+        cursosActuales = programaCargado.getCursosDelCiclo(ciclo);
 
         DefaultComboBoxModel<String> modeloCurso = new DefaultComboBoxModel<>();
         for (Curso curso : cursosActuales) {
@@ -704,13 +704,5 @@ public class JPInicio extends javax.swing.JPanel {
         cboCurso.setModel(modeloCurso);
         cboCurso.setSelectedIndex(-1);
 
-    }
-
-    private String convertirARomano(int numero) {
-        String[] romanos = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-        if (numero >= 1 && numero <= 10) {
-            return romanos[numero - 1];
-        }
-        return String.valueOf(numero); // por si se sale del rango
     }
 }

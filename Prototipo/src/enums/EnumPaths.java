@@ -15,7 +15,7 @@ public enum EnumPaths {
     ICON_PERFIL_WOMAN("/img/Icons/Icon_Perfil_Woman.png"),
     ICON_ERROR("/img/Icons/Icon_Error.png"),
     ICON_CONFIRM("/img/Icons/Icon_Confirmar.png"),
-    DATA_DOCENTES("src/Data/DataDocentes.txt");
+    DATA_DOCENTES("src/Data/Usuarios/DataDocentes.txt");
 
     private final String ruta;
 

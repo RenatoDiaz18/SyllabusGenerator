@@ -1,5 +1,0 @@
-Junior Alexis|Morales Vela|M|4|4|Bachiller|jmoralesve@unprg.edu.pe|1234pass|0|Pánfila
-Rodrigo Osvaldo|Aguirre Chavez|M|4|4|Bachiller|raguirrec@unprg.edu.pe|1234pass|0|Firulais
-Jaime Renato|Díaz Soplopuco|M|4|4|Bachiller|jdiazsopl@unprg.edu.pe|1234pass|2|Tangamandapio
-Diego Fabricio|Barreno Rafael|M|4|4|Bachiller|dbarreno@unprg.edu.pe|1234pass|3|Franklin
-Christian Gabriel|Veliz Haro|M|3|3|Bachiller|cvelizh@unprg.edu.pe|1234pass|3|Juvencio
