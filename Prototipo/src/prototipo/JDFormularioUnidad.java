@@ -2,6 +2,7 @@ package prototipo;
 
 import Clases.FilaResumen;
 import Clases.Semana;
+import Clases.Silabo;
 import Clases.Unidad;
 import ClasesSoporte.Evidencia;
 import ClasesSoporte.HabilidadRequerida;
@@ -24,16 +25,18 @@ public class JDFormularioUnidad extends javax.swing.JDialog {
     private SemanaTableModel semanasModel;
 
     private Unidad unidadActual;
-
+    private List<Unidad> unidades = new ArrayList<>();
+    private Silabo silabus;
     private boolean aceptado = false;
 
     private ResumenUnidadTableModel resumenModel;
 
-    public JDFormularioUnidad(java.awt.Frame parent, boolean modal) {
+    public JDFormularioUnidad(java.awt.Frame parent, boolean modal, Silabo silabo) {
         super(parent, modal);
         habilidadesModel = new HabilidadesTableModel(new ArrayList<>());
         evidenciasModel = new Evidencias2TableModel(new ArrayList<>());
         semanasModel = new SemanaTableModel();
+        silabus=  silabo;
 
         initComponents();
 
@@ -501,7 +504,11 @@ public class JDFormularioUnidad extends javax.swing.JDialog {
             unidades.add(unidad);
             unidadActual = unidad;
         }
-
+        if (silabus.getUnidades() == null) {
+        silabus.setUnidades(unidades);    
+        }else{
+        silabus.getUnidades().add(unidadActual);
+        }
         resumenModel.setFilas(resumen);
         aceptado = true;
 
@@ -574,8 +581,8 @@ public class JDFormularioUnidad extends javax.swing.JDialog {
         txtDescripcion.setWrapStyleWord(true);
         JScrollPane scrollDescripcion = new JScrollPane(txtDescripcion);
 
-        JSpinner spSemanaInicio = new JSpinner(new SpinnerNumberModel(1, 1, numeroTotalSemanas, 1));
-        JSpinner spSemanaFin = new JSpinner(new SpinnerNumberModel(1, 1, numeroTotalSemanas, 1));
+        JSpinner spSemanaInicio = new JSpinner(new SpinnerNumberModel(0, 0, numeroTotalSemanas, 1));
+        JSpinner spSemanaFin = new JSpinner(new SpinnerNumberModel(0, 0, numeroTotalSemanas, 1));
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -899,7 +906,7 @@ public class JDFormularioUnidad extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDFormularioUnidad dialog = new JDFormularioUnidad(new javax.swing.JFrame(), true);
+                JDFormularioUnidad dialog = new JDFormularioUnidad(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

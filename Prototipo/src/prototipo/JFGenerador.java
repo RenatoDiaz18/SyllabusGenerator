@@ -191,7 +191,7 @@ public class JFGenerador extends javax.swing.JFrame {
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         if (this.panelBienvenida == null) {
-            this.panelBienvenida = new JPBienvenida(this, silabo);
+            this.panelBienvenida = new JPBienvenida(this, this.silabo);
         }
 
         btnInicio.setBackground(COLOR_SELECCIONADO);
