@@ -1,31 +1,26 @@
 package Clases;
 
-import java.util.List;
+import java.util.*;
 
 public class Curso {
 
     private String codigo;
     private String nombre;
     private int creditos;
-    private String prerequisito;
-    private String hPracticas;
-    private String hTeoricas;
+    private List<String> prerrequisitos;
+    private int hPracticas;
+    private int hTeoricas;
     private String sumilla;
-    private String competencia;
-    private String capacidad;
-    private List<Desempeño> desempeño;
 
-    public Curso(String codigo, String nombre, int creditos,String prerequisito,String hPracticas, String hTeoricas, String sumilla, String competencia, String capacidad, List<Desempeño> desempeño) {
+    public Curso(String codigo, String nombre, int creditos,List<String> prerrequisitos,Integer hPracticas, Integer hTeoricas, String sumilla) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.creditos = creditos;
-        this.prerequisito = prerequisito;
+        this.prerrequisitos = new ArrayList<>();
+        this.prerrequisitos.addAll(prerrequisitos);
         this.hPracticas = hPracticas;
         this.hTeoricas = hTeoricas;
         this.sumilla = sumilla;
-        this.competencia = competencia;
-        this.capacidad = capacidad;
-        this.desempeño = desempeño;
     }
 
     public String getNombre() {
@@ -40,11 +35,11 @@ public class Curso {
         return sumilla;
     }
 
-    public String gethPracticas() {
+    public int gethPracticas() {
         return hPracticas;
     }
 
-    public String gethTeoricas() {
+    public int gethTeoricas() {
         return hTeoricas;
     }
 
@@ -52,20 +47,8 @@ public class Curso {
         return creditos;
     }
 
-    public String getCompetencia() {
-        return competencia;
-    }
-
-    public String getCapacidad() {
-        return capacidad;
-    }
-
-    public List<Desempeño> getDesempeño() {
-        return desempeño;
-    }
-
-    public String getPrerequisito() {
-        return prerequisito;
+    public List<String> getPrerrequisitos() {
+        return prerrequisitos;
     }
 
     @Override

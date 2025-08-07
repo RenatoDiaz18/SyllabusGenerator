@@ -1,15 +1,15 @@
 package prototipo;
 
-import Clases.Escuela;
-import Clases.Facultades;
 import Clases.Silabo;
+import static Data.Data.cargarDataPrograma;
+import Data.PlanesEstudioRepository;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
 public class JFPrincipal extends javax.swing.JFrame {
 
-    private Facultades facultades = new Facultades();
-    private Escuela escuelas = new Escuela();
     private DefaultComboBoxModel<String> modeloEscuelas = new DefaultComboBoxModel<>();
+    private DefaultComboBoxModel<String> modeloProgramas = new DefaultComboBoxModel<>();
     private JFGenerador padre;
     private Silabo silabo;
     int xMouse, yMouse;
@@ -19,6 +19,7 @@ public class JFPrincipal extends javax.swing.JFrame {
         this.padre = padre;
         this.silabo = silabo;
         cboEscuelas.setModel(modeloEscuelas);
+        this.cmbProgramas.setModel(modeloProgramas);
     }
 
     @SuppressWarnings("unchecked")
@@ -38,7 +39,7 @@ public class JFPrincipal extends javax.swing.JFrame {
         lblIconClose = new javax.swing.JLabel();
         btnSiguiente = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbProgramas = new javax.swing.JComboBox<>();
 
         lblExit1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblExit1.setForeground(new java.awt.Color(255, 0, 51));
@@ -88,6 +89,12 @@ public class JFPrincipal extends javax.swing.JFrame {
         cboEscuelas.setModel(this.modeloEscuelas);
         cboEscuelas.setToolTipText("");
         cboEscuelas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
+        cboEscuelas.setEnabled(false);
+        cboEscuelas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboEscuelasItemStateChanged(evt);
+            }
+        });
 
         txtFacultad1.setEditable(false);
         txtFacultad1.setBackground(new java.awt.Color(255, 255, 255));
@@ -100,17 +107,14 @@ public class JFPrincipal extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("SF UI  Text Med", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("SELECCIONE ESCUELA");
 
         jLabel7.setFont(new java.awt.Font("SF UI  Text Med", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("SELECCIONE FACULTAD");
 
         lblIconImagotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Imagotipo.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Nuevo silabo ");
 
@@ -141,10 +145,10 @@ public class JFPrincipal extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("SF UI  Text Med", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("SELECCIONAR PROGRAMA DE ESTUDIOS");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProgramas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
+        cmbProgramas.setEnabled(false);
 
         dpContenedor.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         dpContenedor.setLayer(Lupa, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -157,7 +161,7 @@ public class JFPrincipal extends javax.swing.JFrame {
         dpContenedor.setLayer(lblIconClose, javax.swing.JLayeredPane.DEFAULT_LAYER);
         dpContenedor.setLayer(btnSiguiente, javax.swing.JLayeredPane.DEFAULT_LAYER);
         dpContenedor.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        dpContenedor.setLayer(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dpContenedor.setLayer(cmbProgramas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout dpContenedorLayout = new javax.swing.GroupLayout(dpContenedor);
         dpContenedor.setLayout(dpContenedorLayout);
@@ -185,7 +189,7 @@ public class JFPrincipal extends javax.swing.JFrame {
                                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(dpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbProgramas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(dpContenedorLayout.createSequentialGroup()
                                             .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(17, 17, 17))
@@ -219,7 +223,7 @@ public class JFPrincipal extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbProgramas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
@@ -262,16 +266,25 @@ public class JFPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_dpContenedorMouseDragged
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        if(
+            !this.txtFacultad1.getText().isBlank() ||
+            !this.txtFacultad1.getText().isBlank() ||
+            this.cboEscuelas.getSelectedIndex() != -1 ||
+            this.cmbProgramas.getSelectedIndex() != -1
+                ){
+            silabo.setFacultad(this.txtFacultad1.getText());
+            silabo.setEscuelaProfesional(this.cboEscuelas.getSelectedItem().toString());
+            silabo.setProgramaEstudios(String.valueOf(this.cmbProgramas.getSelectedItem()));
+            
+            cargarDataPrograma(this.txtFacultad1.getText(), this.cboEscuelas.getSelectedItem().toString(), String.valueOf(this.cmbProgramas.getSelectedItem()));
+            
+            padre.setBanderaLlenadoCompleto(true);
+            padre.mostrarPanelInicio();
+            padre.setVisible(true);
 
-        silabo.setFacultad(this.txtFacultad1.getText());
-        silabo.setEscuelaProfesional(this.cboEscuelas.getSelectedItem().toString());
-        //silabo guarda programa de estudio 
-
-        padre.setBanderaLlenadoCompleto(true);
-        padre.mostrarPanelInicio();
-        padre.setVisible(true);
-
-        this.dispose();
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void lblIconCloseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIconCloseMouseReleased
@@ -292,33 +305,53 @@ public class JFPrincipal extends javax.swing.JFrame {
 
     private void LupaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LupaActionPerformed
         JDFacultades frm = new JDFacultades(null, true);
+        
 
         this.txtFacultad1.setText("");
         String seleccionado = frm.buscar();
         frm.setLocationRelativeTo(null);
-
+        
         if (seleccionado != null) {
             this.txtFacultad1.setText(seleccionado);
-        }
-
-        int indiceFacultad = -1;
-
-        for (int i = 0; i < this.facultades.getFacultades().length; i++) {
-            if (this.facultades.getFacultades()[i].equalsIgnoreCase(txtFacultad1.getText())) {
-                indiceFacultad = i;
-                break;
+            
+            modeloEscuelas.removeAllElements();
+            if(!this.cboEscuelas.isEnabled()){
+                this.cboEscuelas.setEnabled(true);
             }
-        }
-
-        modeloEscuelas.removeAllElements();
-        if (indiceFacultad >= 0) {
-            String[] escuelasFacultad = this.escuelas.getEscuelas(indiceFacultad);
-            for (String escuela : escuelasFacultad) {
+            
+            for(String escuela : PlanesEstudioRepository.obtenerEscuelas(seleccionado)){
                 this.modeloEscuelas.addElement(escuela);
-                this.cboEscuelas.setSelectedIndex(-1);
             }
+
+            this.cboEscuelas.setSelectedIndex(-1);
         }
     }//GEN-LAST:event_LupaActionPerformed
+
+    private void cboEscuelasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboEscuelasItemStateChanged
+        if (this.cboEscuelas.getSelectedIndex()!= -1) {
+            
+            modeloProgramas.removeAllElements();
+            if(!this.cmbProgramas.isEnabled()){
+                this.cmbProgramas.setEnabled(true);
+            }
+            
+            List<String> programas = PlanesEstudioRepository.obtenerPlanes(this.txtFacultad1.getText(), String.valueOf(this.cboEscuelas.getSelectedItem()));
+            for(String programa : programas){
+                    this.modeloProgramas.addElement(programa);
+            }
+            
+            if(programas.size() ==1 ){
+                this.cmbProgramas.setSelectedIndex(0);
+            }else {
+                this.cmbProgramas.setSelectedIndex(-1);
+            }
+            
+            
+        }else{
+            modeloProgramas.removeAllElements();
+            this.cmbProgramas.setEnabled(false);
+        }
+    }//GEN-LAST:event_cboEscuelasItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -361,8 +394,8 @@ public class JFPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton Lupa;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<String> cboEscuelas;
+    private javax.swing.JComboBox<String> cmbProgramas;
     private javax.swing.JDesktopPane dpContenedor;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

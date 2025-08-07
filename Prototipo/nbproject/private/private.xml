@@ -12,11 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/junio/OneDrive/Escritorio/IDK/Prototipo/Prototipo/src/Paneles/JPFinal.java</file>
-            <file>file:/C:/Users/junio/OneDrive/Escritorio/IDK/Prototipo/Prototipo/src/Paneles/JPSistemaCalificacion.java</file>
-            <file>file:/C:/Users/junio/OneDrive/Escritorio/IDK/Prototipo/Prototipo/src/prototipo/Prototipo.java</file>
-            <file>file:/C:/Users/junio/OneDrive/Escritorio/IDK/Prototipo/Prototipo/src/prototipo/JDSistemaEvaluacion.java</file>
-            <file>file:/C:/Users/junio/OneDrive/Escritorio/IDK/Prototipo/Prototipo/src/prototipo/JDFormularioUnidad.java</file>
+            <file>file:/D:/Renato/UNPRG/ProyectosGIT/SyllabusGenerator/Prototipo/src/Clases/Curso.java</file>
+            <file>file:/D:/Renato/UNPRG/ProyectosGIT/SyllabusGenerator/Prototipo/src/Data/Data.java</file>
+            <file>file:/D:/Renato/UNPRG/ProyectosGIT/SyllabusGenerator/Prototipo/src/enums/EnumPaths.java</file>
+            <file>file:/D:/Renato/UNPRG/ProyectosGIT/SyllabusGenerator/Prototipo/src/Clases/Facultades.java</file>
+            <file>file:/D:/Renato/UNPRG/ProyectosGIT/SyllabusGenerator/Prototipo/src/Clases/Escuela.java</file>
+            <file>file:/D:/Renato/UNPRG/ProyectosGIT/SyllabusGenerator/Prototipo/src/Data/PlanesEstudioRepository.java</file>
         </group>
     </open-files>
 </project-private>

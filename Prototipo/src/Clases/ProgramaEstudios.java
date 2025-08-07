@@ -9,7 +9,8 @@ public class ProgramaEstudios {
     private String nombreEscuela;
     private List<List<Curso>> cursosCiclo;
 
-    public ProgramaEstudios(String nombreEscuela) {
+    public ProgramaEstudios(String nombreEscuela, String nombrePrograma) {
+        this.nombrePrograma = nombrePrograma;
         this.nombreEscuela = nombreEscuela;
         this.cursosCiclo = new ArrayList<>();
 

@@ -5,6 +5,7 @@
 package prototipo;
 
 import Clases.Facultades;
+import Data.PlanesEstudioRepository;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,7 +20,8 @@ public class JDFacultades extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JDFacultades.class.getName());
 
     private String seleccionado;
-    private List<String> encontrados;
+    private List<String> facultades = new ArrayList<>(PlanesEstudioRepository.obtenerFacultades());
+    private List<String> encontrados = new ArrayList<>();
     private int cantidadEncontrados;
 
     int xMouse, yMouse;
@@ -29,6 +31,9 @@ public class JDFacultades extends javax.swing.JDialog {
     public JDFacultades(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        encontrados.addAll(facultades);
+        this.presentarFacultades();
     }
 
     /**
@@ -292,23 +297,25 @@ public class JDFacultades extends javax.swing.JDialog {
     private void filtrarFacultades(String criterio) {
         this.encontrados = new ArrayList<>();
         this.cantidadEncontrados = 0;
-
-        Facultades f = new Facultades();
-        String[] todas = f.getFacultades();
-
-        for (String nombreFacultad : todas) {
-            if (criterio.length() > 0) {
-                if (criterio.length() <= nombreFacultad.length()) {
-                    if (criterio.equalsIgnoreCase(nombreFacultad.substring(0, criterio.length()))) {
-                        this.encontrados.add(nombreFacultad);
-                        this.cantidadEncontrados++;
+        
+        if(criterio.isBlank() || criterio.isEmpty()){
+            encontrados = (List<String>) PlanesEstudioRepository.obtenerFacultades();
+        }else{
+            for (String nombreFacultad : (List<String>) PlanesEstudioRepository.obtenerFacultades()) {
+                if (criterio.length() > 0) {
+                    if (criterio.length() <= nombreFacultad.length()) {
+                        if (criterio.equalsIgnoreCase(nombreFacultad.substring(0, criterio.length()))) {
+                            this.encontrados.add(nombreFacultad);
+                            this.cantidadEncontrados++;
+                        }
                     }
+                } else {
+                    this.encontrados.add(nombreFacultad);
+                    this.cantidadEncontrados++;
                 }
-            } else {
-                this.encontrados.add(nombreFacultad);
-                this.cantidadEncontrados++;
             }
         }
+        
     }
 
     private void presentarFacultades() {
